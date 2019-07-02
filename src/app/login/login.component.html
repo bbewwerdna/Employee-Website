@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<style>
+		.login-form {
+			width: 300px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		.login-form h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+		.login-form input[type="password"],
+		.login-form input[type="email"] {
+			width: 100%;
+			padding: 15px;
+			border: 1px solid #dddddd;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+		}
+		.login-form input[type="submit"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #535b63;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		</style>
+	</head>
+	<h4 *ngIf="error">{{error}}</h4>
+  <form [formGroup]="lemployeeForm" (ngSubmit)="submit()">
+    <div class="form-group col-3">
+      <label>Email</label>
+      <input type="email" formControlName="EMAIL"  class="form-control" [ngClass]="{ 'is-invalid': submitted && lemployeeForm.get('EMAIL').errors }" />
+      <ul *ngIf="lemployeeForm.get('EMAIL').errors && submitted" class="invalid-feedback">
+        <li *ngIf="lemployeeForm.get('EMAIL').errors.required">Email is required</li>
+        <li *ngIf="lemployeeForm.get('EMAIL').errors.minlength">Email needs to be at least 8 characters long</li>
+        <li *ngIf="lemployeeForm.get('EMAIL').errors.maxlength">Email can be no longer than 35 characters long</li>
+        <li *ngIf="lemployeeForm.get('EMAIL').errors.email">Provide a valid email address</li>
+      </ul>
+    </div>
+    <div class="form-group col-3">
+      <label>Password</label>
+      <input type="password" formControlName="PASSWORD"  class="form-control" [ngClass]="{ 'is-invalid': submitted && lemployeeForm.get('PASSWORD').errors }"/>
+      <ul *ngIf="lemployeeForm.get('PASSWORD').errors && submitted" class="invalid-feedback">
+        <li *ngIf="lemployeeForm.get('PASSWORD').errors.required">Password is required</li>
+        <li *ngIf="lemployeeForm.get('PASSWORD').errors.minlength">Password needs to be at least 8 characters long</li>
+        <li *ngIf="lemployeeForm.get('PASSWORD').errors.maxlength">Password can be no longer than 35 characters long</li>
+        <li *ngIf="lemployeeForm.get('PASSWORD').errors.pattern">Password must contain</li>
+      </ul>
+    </div>
+    <div >
+      <button class="btn btn-primary" type="submit" >Login</button>
+    </div>
+  </form>
+</html>

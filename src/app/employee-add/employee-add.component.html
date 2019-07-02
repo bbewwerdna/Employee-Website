@@ -1,0 +1,138 @@
+<body style="padding:8%">
+<div>
+  <h2 style="text-align:center">New Employee Information</h2>
+  <form  [formGroup]="employeeForm" (ngSubmit)="onSubmit()"  method="POST">
+      <div>
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('firstName').invalid}">                          
+          <label class="control-label">First Name:</label>                          
+          <input required formControlName='firstName'class="form-control" placeholder="First Name"/>
+          <span [class.alert-danger]="employeeForm.get('firstName').invalid" 
+            [class.alert-success]="employeeForm.get('firstName').valid">
+            
+            <ul *ngIf="employeeForm.get('firstName').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('firstName').errors.required">The First Name is required.</li>
+              <li *ngIf="employeeForm.get('firstName').errors.minlength">The First Name must be at least 2 characters long</li>
+              <li *ngIf="employeeForm.get('firstName').errors.maxlength">The First Name must be at most 25 characters long.</li>
+              <li *ngIf="employeeForm.get('firstName').errors.pattern">The First Name must be letters Only.</li>
+            </ul>
+          </span>                
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('lastName').invalid}">                          
+          <label class="control-label">Last Name:</label>                          
+          <input required formControlName='lastName' class="form-control" placeholder="Last Name"/>
+          <span [class.alert-danger]="employeeForm.get('lastName').invalid" 
+            [class.alert-success]="employeeForm.get('lastName').valid">
+            <ul *ngIf="employeeForm.get('lastName').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('lastName').errors.required">The Last Name is required.</li>
+              <li *ngIf="employeeForm.get('lastName').errors.minlength">The Last Name must be at least 2 characters long</li>
+              <li *ngIf="employeeForm.get('lastName').errors.maxlength">The Last Name must be at most 35 characters long.</li>
+              <li *ngIf="employeeForm.get('lastName').errors.pattern">The Last Name must be letters Only.</li>
+            </ul>
+          </span>                
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('address').invalid}">                          
+          <label class="control-label">Address:</label>                          
+          <input required formControlName='address' class="form-control"placeholder="Address"/>
+          <span [class.alert-danger]="employeeForm.get('address').invalid" 
+            [class.alert-success]="employeeForm.get('address').valid">
+            <ul *ngIf="employeeForm.get('address').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('address').errors.required">The Address is required.</li>
+              <li *ngIf="employeeForm.get('address').errors.minlength">The Address must be at least 10 characters long</li>
+              <li *ngIf="employeeForm.get('address').errors.maxlength">The Address must be at most 50 characters long.</li>
+              <li *ngIf="employeeForm.get('address').errors.pattern">The Address must be letters, numbers, hyphens, apostrophes, or spaces.</li>
+            </ul>
+          </span>                
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('city').invalid}">                          
+          <label class="control-label">City:</label>                          
+          <input required formControlName='city' class="form-control"placeholder="City"/>
+          <span [class.alert-danger]="employeeForm.get('city').invalid" 
+            [class.alert-success]="employeeForm.get('city').valid">
+            <ul *ngIf="employeeForm.get('city').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('city').errors.required">The City is required.</li>
+              <li *ngIf="employeeForm.get('city').errors.minlength">The City must be at least 5 characters long</li>
+              <li *ngIf="employeeForm.get('city').errors.maxlength">The City must be at most 50 characters long.</li>
+              <li *ngIf="employeeForm.get('city').errors.pattern">The City must be letters Only.</li>
+            </ul>
+          </span>                
+        </div>
+
+        <div class="form-group" >
+          <label class="control-label">State :</label> 
+          <select id="state" required formControlName="state" class="form-control">
+            <option *ngFor="let State of states" [ngValue]="State"  >{{State}}</option>
+          </select>
+          <ul  class="alert-danger">
+            <li *ngIf="employeeForm.get('state').invalid">The State is required</li>
+          </ul>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('zip').invalid}">                          
+          <label class="control-label">ZIP/Postal Code:</label>                          
+          <input required formControlName='zip' class="form-control" placeholder="ZIP/Postal Code"/>
+          <span [class.alert-danger]="employeeForm.get('zip').invalid" 
+            [class.alert-success]="employeeForm.get('zip').valid">
+            <ul *ngIf="employeeForm.get('zip').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('zip').errors.required">The ZIP/Postal Code is required.</li>
+              <li *ngIf="employeeForm.get('zip').errors.minlength">The ZIP/Postal Code must be at least 5 characters long</li>
+              <li *ngIf="employeeForm.get('zip').errors.maxlength">The ZIP/Postal Code must be at most 9 characters long.</li>
+              <li *ngIf="employeeForm.get('zip').errors.pattern">The ZIP/Postal Code must be Numbers Only.</li>
+            </ul>
+          </span>                
+        </div>
+        
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('cellPhone').invalid}">                          
+          <label class="control-label">Cell Phone:</label>                          
+          <input required formControlName='cellPhone' class="form-control" placeholder="Cell Phone"/>
+          <span [class.alert-danger]="employeeForm.get('cellPhone').invalid" 
+            [class.alert-success]="employeeForm.get('cellPhone').valid">
+            <ul *ngIf="employeeForm.get('cellPhone').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('cellPhone').errors.required">The Cell Phone is required.</li>
+              <li *ngIf="employeeForm.get('cellPhone').errors.minlength">The Cell Phone must be at least 10 characters long</li>
+              <li *ngIf="employeeForm.get('cellPhone').errors.maxlength">The Cell Phone must be at most 10 characters long with No "-".</li>
+              <li *ngIf="employeeForm.get('cellPhone').errors.pattern">The Cell Phone must be Numbers Only.</li>
+            </ul>
+          </span>                
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('homePhone').invalid}">                          
+          <label class="control-label">Home Phone:</label>                          
+          <input required formControlName='homePhone' class="form-control" placeholder="Home Phone"/>
+          <span [class.alert-danger]="employeeForm.get('homePhone').invalid" 
+            [class.alert-success]="employeeForm.get('homePhone').valid">
+            <ul *ngIf="employeeForm.get('homePhone').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('homePhone').errors.required">The Home Phone is required.</li>
+              <li *ngIf="employeeForm.get('homePhone').errors.minlength">The Home Phone must be at least 10 characters long</li>
+              <li *ngIf="employeeForm.get('homePhone').errors.maxlength">The Home Phone must be at most 10 characters long with No "-".</li>
+              <li *ngIf="employeeForm.get('homePhone').errors.pattern">The Home Phone must be Numbers Only.</li>
+            </ul>
+          </span>                
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': employeeForm.get('email').invalid}">                          
+          <label class="control-label">Email:</label>                          
+          <input required formControlName='email' class="form-control" placeholder="Email"/>
+          <span [class.alert-danger]="employeeForm.get('email').invalid" 
+            [class.alert-success]="employeeForm.get('email').valid">
+            <ul *ngIf="employeeForm.get('email').errors" class="alert-danger">
+              <li *ngIf="employeeForm.get('email').errors.required">The Email is required.</li>
+              <li *ngIf="employeeForm.get('email').errors.minlength">The Email must be at least 10 characters long</li>
+              <li *ngIf="employeeForm.get('email').errors.maxlength">The Email must be at most 50 characters long.</li>
+              <li *ngIf="employeeForm.get('email').errors.pattern">The Email must be a valid Email address.</li>
+            </ul>
+          </span>                
+        </div>
+  
+    </div>
+    <button (click)="onSubmit()" [routerLink]="['/employees']" [disabled]="employeeForm.invalid">Add Employee</button>
+    
+  </form>
+  <button (click)="Cancel()">Cancel</button>
+</div>
+</body>
+  
+  
+

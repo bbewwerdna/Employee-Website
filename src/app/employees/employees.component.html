@@ -1,0 +1,34 @@
+
+<style>
+  table{
+    border-collapse: collapse;
+  }
+  th{
+    background-color:grey;
+    border: 1px solid;
+    text-align: center;
+    padding: 8px;
+  }
+  td{
+    border: 1px solid;
+    text-align: center;
+  }
+</style>
+
+<button class="btn btn-primary" [routerLink]="['/employee-add']" >Add Employee</button>
+<h1 >Employees: </h1>
+<table class="container employeeList">
+  
+  <tr>
+    <th >Name</th>
+    <th >Email</th>
+  </tr>
+    <tr *ngFor="let hero of heroes"  routerLink="/employee-edit/{{hero.id}}">
+      <td>
+        <button type="button" class="btn btn-link" > {{hero.firstName + " " + hero.lastName}} </button>
+      </td>
+      <td>
+        {{hero.email}}
+      </td>
+  </tr>
+</table>
